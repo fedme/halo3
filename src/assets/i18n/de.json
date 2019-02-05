@@ -1,0 +1,78 @@
+{
+  "REGISTRATION": {
+    "TITLE": "Registration",
+    "PARTICIPANT_DATA": "Participant Data",
+    "EXPERIMENT_SETTINGS": "Experiment Settings",
+    "CODE_LABEL": "Code",
+    "GENDER_LABEL": "Gender",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "AGE_LABEL": "Age",
+    "GRADE_LABEL": "Grade",
+    "SUBMIT": "Begin experiment"
+  },
+  "END": {
+    "END": "Ende",
+    "WELL_DONE": "Gut Gemacht!",
+    "PLAY_AGAIN": "Wieder Spielen",
+    "PLAY_AGAIN_CONFIRM": "Wieder Spielen (press again to confirm)"
+  },
+  "GAME": {
+    "NEXT_QUESTION": "Next Question",
+    "GOTO_GRADING": "Proceed to Grading"
+  },
+  "GRADING": {
+    "ABILITY_QUESTION": "Was denkst du, wie gut ist {{player}} in diesem Spiel?",
+    "LUCK_QUESTION": "Was denkst du, wieviel Glück hatte {{player}} in diesem Spiel?"
+  },
+  "SCENARIOS": {
+    "INTRO": "Das ist Toma.",
+    "INTRO_2": "Toma lebt auf dem fernen Planeten Apres.",
+    "school": {
+      "INTRO": "Heute hat Toma in der Schule etwas über Dinge in der Natur gelernt.",
+      "INTRO_QUESTION": "Worüber hat Toma heute etwas in der Schule gelernt?",
+      "QUESTION": "Hat Toma etwas über {{obj}} gelernt?",
+      "Q_PRE_OBJ": "Hat Toma etwas über ",
+      "Q_POST_OBJ": " gelernt?",
+      "1HS": ["Apfelbäume"],
+      "8HS": ["Eulen", "Haie", "Apfelbäume", "Papageien", "Clownfische", "Nadelbäume", "Sonnenblumen", "Rosen"],
+      "3HS": ["Nadelbäume", "Clownfische", "Eulen"],
+      "3CS": ["Pflanzen", "Fische", "Haie"]
+    },
+    "blicket": {
+      "INTRO": "Toma hat von seiner Tante ein neues Blicket bekommen.",
+      "INTRO_QUESTION": "Welches von diesen ist ein Blicket?",
+      "QUESTION": "Sind Blickets {{obj}}?",
+      "Q_PRE_OBJ": "Sind Blickets ",
+      "Q_POST_OBJ": "?",
+      "1HS": ["blau"],
+      "8HS": ["rosa", "grün", "grau", "blau", "weiß", "gelb", "rot", "orange"],
+      "3HS": ["grün", "rosa", "rot"],
+      "3CS": ["viereckig", "gestreift", "gelb"]
+    },
+    "suitcase": {
+      "INTRO": "Toma fährt in den Urlaub und packt seinen Koﬀer. Etwas hat er noch vergessen.",
+      "INTRO_QUESTION": "Was muss Toma noch in seinen Koﬀer packen?",
+      "QUESTION": "Muss Toma noch {{obj}} einpacken?",
+      "Q_PRE_OBJ": "Muss Toma noch ",
+      "Q_POST_OBJ": " einpacken?",
+      "1HS": ["seine Gummistiefel"],
+      "8HS": ["seinen Spielzeugzug", "seinen Fußball", "seine Gummistiefel", "seine Sandalen", "seinen Basketball",
+        "seinen Spielzeughubschrauber", "seine lange Hose", "seine kurze Hose"],
+      "3HS": ["seine kurze Hose", "seine Sandalen", "seinen Spielzeugzug"],
+      "3CS": ["ein Spielzeug", "einen Ball", "seinen Fußball"]
+    },
+    "food": {
+      "INTRO": "Gestern war Tomas Mama einkaufen.",
+      "INTRO_QUESTION": "Was hat Tomas Mama eingekauft?",
+      "QUESTION": "Hat Tomas Mama {{obj}} eingekauft?",
+      "Q_PRE_OBJ": "Hat Tomas Mama ",
+      "Q_POST_OBJ": " eingekauft?",
+      "1HS": ["gelbe Äpfel"],
+      "8HS": ["orange Bonbons", "Erdbeertorte", "rote Äpfel", "dunkle Weintrauben", "helle Weintrauben", 
+        "gelbe Äpfel", "Schokoladentorte", "blaue Bonbons"],
+      "3HS": ["blaue Bonbons", "rote Äpfel", "Schokoladentorte"],
+      "3CS": ["Obst", "Äpfel", "helle Weintrauben"]
+    }
+  }
+}

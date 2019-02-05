@@ -1,0 +1,8 @@
+{
+  "name": "sipp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "76499d07"
+}

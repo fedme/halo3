@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title>{{appName}} v{{appVersion}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>Records ({{dataService.recordsNumber}})</ion-button>
+      <ion-button (click)="dataService.exportRecordsAsJSON()">Export data</ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed size-md>
+    <ion-row justify-content-center align-items-start>
+
+      <ion-col size="12" size-sm>
+
+        <!-- Participant data -->
+        <ion-card mode="ios">
+          <ion-card-header text-center>
+            <ion-card-title>{{'REGISTRATION.PARTICIPANT_DATA' | translate}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <!-- Participant code -->
+            <ion-item>
+              <ion-label>{{'REGISTRATION.CODE_LABEL' | translate}}</ion-label>
+              <ion-input #focusInput type="text" [(ngModel)]="app.participant.code" name="code" autocomplete="off"
+                autocorrect="off" text-end></ion-input>
+            </ion-item>
+
+            <!-- Participant gender -->
+            <ion-item>
+              <ion-label>{{'REGISTRATION.GENDER_LABEL' | translate}}</ion-label>
+              <ion-select [(ngModel)]="app.participant.gender" name="gender">
+                <ion-select-option value="male">{{'REGISTRATION.MALE' | translate}}</ion-select-option>
+                <ion-select-option value="female">{{'REGISTRATION.FEMALE' | translate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <!-- Participant age -->
+            <ion-item>
+              <ion-label>{{'REGISTRATION.AGE_LABEL' | translate}}</ion-label>
+              <ion-input type="number" [(ngModel)]="app.participant.age" name="age" text-end autocomplete="off"
+                autocorrect="off"></ion-input>
+            </ion-item>
+
+            <!-- Participant grade -->
+            <ion-item *ngIf="app.participant.age != null">
+              <ion-label>{{'REGISTRATION.GRADE_LABEL' | translate}}</ion-label>
+              <ion-input type="number" [(ngModel)]="app.participant.grade" name="grade" text-end autocomplete="off"
+                autocorrect="off"></ion-input>
+            </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-sm>
+
+        <!-- Experiment settings -->
+        <ion-card mode="ios">
+          <ion-card-header text-center>
+            <ion-card-title>{{'REGISTRATION.EXPERIMENT_SETTINGS' | translate}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <!-- Experiment language -->
+            <ion-item>
+              <ion-label>Language</ion-label>
+              <ion-select [(ngModel)]="app.lang" name="lang">
+                <ion-select-option *ngFor="let lang of app.availableLangs" value="{{lang}}">{{lang}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <!-- Begin experiment button -->
+            <ion-item padding-top>
+              <ion-button slot="end" (click)="handleRegistration()">
+                {{'REGISTRATION.SUBMIT' | translate}}
+              </ion-button>
+            </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
