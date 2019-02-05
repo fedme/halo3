@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-title>{{'END.END' | translate}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="playAgain()">Fill a new questionnaire</ion-button>
+      <ion-button (click)="playAgain()">{{'END.PLAY_AGAIN' | translate}}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +16,7 @@
         <ion-card mode="ios">
           <ion-card-content text-center>
 
-            <ion-card-title>Questionnaire Submitted!</ion-card-title>
+            <ion-card-title>{{'END.WELL_DONE' | translate}}</ion-card-title>
 
           </ion-card-content>
         </ion-card>
