@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Instructor, Video, Condition, Skill } from './models';
+import { Instructor, Video, Condition, Skill, TestBattery, TestRound } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { Utils } from '../common/utils';
 export class HaloService implements IExperiment {
 
   condition: Condition;
+  testBattery: TestBattery;
+  private videoIndex: number;
+  private testIndex: number;
 
   constructor() { }
 
@@ -16,10 +19,44 @@ export class HaloService implements IExperiment {
     console.log('[HaloService] setupExperiment()');
     this.resetData();
     this.chooseCondition();
+    this.setupTests();
   }
 
   public resetData() {
     this.condition = null;
+    this.testBattery = null;
+    this.videoIndex = 0;
+    this.testIndex = 0;
+  }
+
+  public get currentVideo(): Video {
+    if (this.videoIndex >= this.condition.videos.length) return null;
+    return this.condition.videos[this.videoIndex];
+  }
+
+  public isLastVideo(): boolean {
+    return this.videoIndex >= this.condition.videos.length - 1;
+  }
+
+  public nextVideo() {
+    this.videoIndex++;
+  }
+
+  public isLastTest(): boolean {
+    return this.testIndex >= this.testBattery.tests.length;
+  }
+
+  public nextTest() {
+    this.testIndex++;
+  }
+
+  setupTests() {
+    this.testBattery = new TestBattery([
+      new TestRound('animals'),
+      new TestRound('fish'),
+      new TestRound('houses'),
+    ]);
+    Utils.shuffleArray(this.testBattery.tests);
   }
 
   chooseCondition() {

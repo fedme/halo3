@@ -5,7 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'registration', pathMatch: 'full' },
   { path: 'registration', loadChildren: './registration/registration.module#RegistrationPageModule' },
-  { path: 'intro', loadChildren: './intro/intro.module#IntroPageModule' },
+  { path: 'videos', loadChildren: './videos/videos.module#VideosPageModule' },
+  { path: 'initial-check', loadChildren: './initial-check/initial-check.module#InitialCheckPageModule' },
+  { path: 'test', loadChildren: './test/test.module#TestPageModule' },
+  { path: 'explanation', loadChildren: './explanation/explanation.module#ExplanationPageModule' },
+  { path: 'final-check', loadChildren: './final-check/final-check.module#FinalCheckPageModule' },
   { path: 'end', loadChildren: './end/end.module#EndPageModule' }
 ];
 

@@ -23,6 +23,18 @@ export class TestRound {
     choice: Instructor;
     confident: boolean;
     confidenceLevel: ConfidenceLevel
+
+    constructor(picture: string) {
+        this.picture = picture;
+    }
+}
+
+export class TestBattery {
+    tests: TestRound[];
+
+    constructor(tests: TestRound[]) {
+        this.tests = tests;
+    }
 }
 
 export class Video {
@@ -36,7 +48,7 @@ export class Video {
         this.skill = skill;
     }
 
-    get VideoFile(): string { 
+    get videoFile(): string { 
         return `assets/videos/Edit_Video${this.id}_${this.instructor}_${this.skill.toUpperCase()}EXPERT.mp4`;
     }
 }
