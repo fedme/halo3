@@ -36,8 +36,8 @@ export class AppService implements IExperiment {
     // App Initialization
     this.platform.ready().then(() => {
       this.initTranslate();
-      //this.enterImmersiveMode();
-      //this.enterPinnedMode();
+      this.enterImmersiveMode();
+      this.enterPinnedMode();
       this.disableBackButton();
 
       // Manage app language
