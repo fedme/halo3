@@ -20,7 +20,7 @@ export class InitialCheckPage implements OnInit {
   ngOnInit() {
   }
 
-  async next() {
+  async chooseByIndex(i: number) {
 
     const alert = await this.alertCtrl.create({
       header: 'Confirm?',
@@ -34,6 +34,7 @@ export class InitialCheckPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
+            this.halo.initialCheck.chooseByIndex(i);
             this.navCtrl.navigateRoot('/test');
           }
         }

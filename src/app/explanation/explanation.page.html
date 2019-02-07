@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Final check</ion-title>
+    <ion-title>Explanation</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="next()">{{'UI.NEXT' | translate}}</ion-button>
     </ion-buttons>
@@ -11,8 +11,8 @@
   <ion-grid fixed size-md>
     <ion-row justify-content-center align-items-start>
 
-      <ion-col size="11" size-m text-center>
-        text
+      <ion-col size="8" size-m text-center>
+        <img src="assets/img/Exp_{{halo.currentExplanation}}.png" alt="{{halo.currentExplanation}}">
       </ion-col>
     </ion-row>
   </ion-grid>

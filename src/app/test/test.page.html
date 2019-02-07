@@ -2,19 +2,60 @@
   <ion-toolbar>
     <ion-title>Test</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="next()">{{'UI.NEXT' | translate}}</ion-button>
+      <!-- <ion-button (click)="next()">{{'UI.NEXT' | translate}}</ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid fixed size-md>
+
     <ion-row justify-content-center align-items-start>
 
-      <ion-col size="11" size-m text-center>
-        text
+      <ion-col size="6" size-m text-center>
+        <img src="assets/img/Test_{{halo.currentTest.picture}}.png" alt="{{halo.currentTest.picture}}">
       </ion-col>
+
     </ion-row>
+
+
+
+
+    <ion-row justify-content-center align-items-start *ngIf="halo.currentTest.choice == null">
+
+      <ion-col size="4" size-m text-center *ngFor="let choice of halo.currentTest.possibleChoices; let i = index">
+        <div class="instructor">
+          <img src="assets/img/{{choice}}.png" alt="{{choice}}" (click)="chooseInstructor(i)">
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+
+
+    <ion-row justify-content-center align-items-start *ngIf="halo.currentTest.choice != null && halo.currentTest.confidence == null">
+
+      <ion-col size="4" size-m text-center *ngFor="let choice of halo.currentTest.confidenceChoices; let i = index">
+        <div class="confidence">
+          <img src="assets/img/{{choice}}.png" alt="{{choice}}" (click)="chooseConfidence(i)">
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+
+
+    <ion-row justify-content-center align-items-start *ngIf="halo.currentTest.confidence != null">
+
+      <ion-col size="3" size-m text-center *ngFor="let choice of halo.currentTest.confidenceLevelChoices; let i = index">
+        <div class="confidenceLevel">
+          <img src="assets/img/{{halo.currentTest.confidence}}-{{choice}}.png" alt="{{choice}}" (click)="chooseConfidenceLevel(i)">
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+
   </ion-grid>
 
 </ion-content>

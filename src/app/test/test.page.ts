@@ -15,12 +15,14 @@ export class TestPage implements OnInit {
     private alertCtrl: AlertController
   ) {
 
+    
+
   }
 
   ngOnInit() {
   }
 
-  async next() {
+  async chooseInstructor(i: number) {
 
     const alert = await this.alertCtrl.create({
       header: 'Confirm?',
@@ -34,6 +36,53 @@ export class TestPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
+            this.halo.currentTest.chooseInstructor(i);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async chooseConfidence(i: number) {
+
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm?',
+      message: '',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {}
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.halo.currentTest.chooseConfidence(i);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async chooseConfidenceLevel(i: number) {
+
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm?',
+      message: '',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {}
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.halo.currentTest.chooseConfidenceLevel(i);
             if (this.halo.isLastTest()) {
               this.navCtrl.navigateRoot('/final-check');
             }

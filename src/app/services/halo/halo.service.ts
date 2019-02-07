@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Instructor, Video, Condition, Skill, TestBattery, TestRound } from './models';
+import { Instructor, Video, Condition, Skill, TestBattery, TestRound, MemoryCheck } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -10,6 +10,10 @@ export class HaloService implements IExperiment {
 
   condition: Condition;
   testBattery: TestBattery;
+  initialCheck: MemoryCheck;
+  finalCheck: MemoryCheck;
+  explanations: string[];
+  private explanationIndex: number;
   private videoIndex: number;
   private testIndex: number;
 
@@ -20,11 +24,16 @@ export class HaloService implements IExperiment {
     this.resetData();
     this.chooseCondition();
     this.setupTests();
+    this.setupChecks();
   }
 
   public resetData() {
     this.condition = null;
     this.testBattery = null;
+    this.initialCheck = null;
+    this.finalCheck = null;
+    this.explanations = ['animals', 'fish', 'houses'];
+    this.explanationIndex = 0;
     this.videoIndex = 0;
     this.testIndex = 0;
   }
@@ -42,12 +51,35 @@ export class HaloService implements IExperiment {
     this.videoIndex++;
   }
 
+  public get currentTest(): TestRound {
+    if (this.testIndex >= this.testBattery.tests.length) return null;
+    return this.testBattery.tests[this.testIndex];
+  }
+
   public isLastTest(): boolean {
-    return this.testIndex >= this.testBattery.tests.length;
+    return this.testIndex >= this.testBattery.tests.length - 1;
   }
 
   public nextTest() {
     this.testIndex++;
+  }
+
+  public get currentExplanation(): string {
+    if (this.explanationIndex >= this.explanations.length) return null;
+    return this.explanations[this.explanationIndex];
+  }
+
+  public isLastExplanation(): boolean {
+    return this.explanationIndex >= this.explanations.length - 1;
+  }
+
+  public nextExplanation() {
+    this.explanationIndex++;
+  }
+
+  setupChecks() {
+    this.initialCheck = new MemoryCheck();
+    this.finalCheck = new MemoryCheck();
   }
 
   setupTests() {
@@ -101,6 +133,10 @@ export class HaloService implements IExperiment {
   public getExperimentData() {
 
     const data = {
+      condition: this.condition,
+      initialCheck: this.initialCheck,
+      test: this.testBattery,
+      finalCheck: this.finalCheck
     };
 
     return data;

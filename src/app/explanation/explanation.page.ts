@@ -15,6 +15,7 @@ export class ExplanationPage implements OnInit {
     private alertCtrl: AlertController
   ) {
 
+
   }
 
   ngOnInit() {
@@ -34,7 +35,12 @@ export class ExplanationPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.navCtrl.navigateRoot('/end');
+            if (this.halo.isLastExplanation()) {
+              this.navCtrl.navigateRoot('/end');
+            }
+            else {
+              this.halo.nextExplanation();
+            }     
           }
         }
       ]

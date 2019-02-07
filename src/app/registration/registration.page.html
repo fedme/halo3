@@ -4,7 +4,7 @@
     <ion-title>{{appName}} v{{appVersion}}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button>Records ({{dataService.recordsNumber}})</ion-button>
+      <ion-button>Records in DB: {{dataService.recordsNumber}}</ion-button>
       <ion-button (click)="dataService.exportRecordsAsJSON()">Export data</ion-button>
     </ion-buttons>
 

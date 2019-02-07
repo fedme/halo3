@@ -1,3 +1,5 @@
+import { Utils } from "../common/utils";
+
 export enum Instructor {
     Blue = 'blue',
     Yellow = 'yellow'
@@ -8,24 +10,73 @@ export enum Skill {
     QA = 'qa'
 }
 
+export enum Confidence {
+    Confident = 'confident',
+    NonConfident = 'notconfident'
+}
+
 export enum ConfidenceLevel {
-    VerySure = 'veryshure',
+    VerySure = 'verysure',
     DontKnow = 'dontknow',
     NotSure = 'notsure'
 }
 
 export class MemoryCheck {
+    possibleChoices: Instructor[];
     choice: Instructor;
+
+    constructor() {
+        this.possibleChoices = [
+            Instructor.Blue,
+            Instructor.Yellow
+        ];
+        Utils.shuffleArray(this.possibleChoices);
+    }
+
+    registerChoice(instructor: Instructor) {
+        this.choice = instructor;
+    }
+
+    chooseByIndex(i: number) {
+        if (i < this.possibleChoices.length)
+            this.registerChoice(this.possibleChoices[i]);
+    }
 }
 
 export class TestRound {
     picture: string;
     choice: Instructor;
-    confident: boolean;
-    confidenceLevel: ConfidenceLevel
+    confidence: Confidence;
+    confidenceLevel: ConfidenceLevel;
+
+    possibleChoices: Instructor[];
+    confidenceChoices: Confidence[];
+    confidenceLevelChoices: ConfidenceLevel[];
 
     constructor(picture: string) {
         this.picture = picture;
+        this.possibleChoices = [Instructor.Blue, Instructor.Yellow];
+        Utils.shuffleArray(this.possibleChoices);
+        this.confidenceChoices = [Confidence.Confident, Confidence.NonConfident];
+        Utils.shuffleArray(this.confidenceChoices);
+        this.confidenceLevelChoices = [ConfidenceLevel.NotSure, ConfidenceLevel.VerySure];
+        Utils.shuffleArray(this.confidenceLevelChoices);
+        this.confidenceLevelChoices.splice(1, 0, ConfidenceLevel.DontKnow);
+    }
+
+    chooseInstructor(i: number) {
+        if (i < this.possibleChoices.length)
+            this.choice = this.possibleChoices[i];
+    }
+
+    chooseConfidence(i: number) {
+        if (i < this.confidenceChoices.length)
+            this.confidence = this.confidenceChoices[i];
+    }
+
+    chooseConfidenceLevel(i: number) {
+        if (i < this.confidenceLevelChoices.length)
+            this.confidenceLevel = this.confidenceLevelChoices[i];
     }
 }
 

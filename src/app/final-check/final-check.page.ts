@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { HaloService } from '../services/halo/halo.service';
+import { DataService } from '../services/common/data.service';
 
 @Component({
   selector: 'app-final-check',
@@ -10,6 +11,7 @@ import { HaloService } from '../services/halo/halo.service';
 export class FinalCheckPage implements OnInit {
 
   constructor(
+    private appData: DataService,
     public halo: HaloService,
     private navCtrl: NavController,
     private alertCtrl: AlertController
@@ -20,7 +22,7 @@ export class FinalCheckPage implements OnInit {
   ngOnInit() {
   }
 
-  async next() {
+  async chooseByIndex(i: number) {
 
     const alert = await this.alertCtrl.create({
       header: 'Confirm?',
@@ -34,6 +36,8 @@ export class FinalCheckPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
+            this.halo.finalCheck.chooseByIndex(i);
+            this.appData.save();
             this.navCtrl.navigateRoot('/explanation');
           }
         }
