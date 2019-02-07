@@ -27,6 +27,13 @@ export enum Environment {
     Houses = 'houses'
 }
 
+export enum Art {
+    Animals = 'animals',
+    BetterAtSchool = 'betteratschool',
+    Icecream = 'icecream',
+    TreasureHunt = 'treasurehunt'
+}
+
 export class MemoryCheck {
     possibleChoices: Instructor[];
     choice: Instructor;
@@ -134,6 +141,59 @@ export class TestBattery {
             new TestRound(Environment.Animals),
             new TestRound(Environment.Fish),
             new TestRound(Environment.Houses),
+        ]);
+        Utils.shuffleArray(battery.tests);
+        return battery;
+    }
+}
+
+export class SecondTestRound {
+    picture: Art;
+    choice: Instructor;
+
+    possibleChoices: Instructor[];
+    
+
+    constructor(picture: Art) {
+        this.picture = picture;
+        this.possibleChoices = [Instructor.Blue, Instructor.Yellow];
+        Utils.shuffleArray(this.possibleChoices);
+    }
+
+    chooseInstructor(i: number) {
+        if (i < this.possibleChoices.length)
+            this.choice = this.possibleChoices[i];
+    }
+}
+
+export class SecondTestBattery {
+    tests: SecondTestRound[];
+    private testIndex: number;
+
+    constructor(tests: SecondTestRound[]) {
+        this.tests = tests;
+        this.testIndex = 0;
+    }
+
+    public get currentTest(): SecondTestRound {
+        if (this.testIndex >= this.tests.length) return null;
+        return this.tests[this.testIndex];
+    }
+
+    public isLastTest(): boolean {
+        return this.testIndex >= this.tests.length - 1;
+    }
+
+    public nextTest() {
+        this.testIndex++;
+    }
+
+    public static getDefault(): SecondTestBattery {
+        const battery = new SecondTestBattery([
+            new SecondTestRound(Art.Animals),
+            new SecondTestRound(Art.BetterAtSchool),
+            new SecondTestRound(Art.Icecream),
+            new SecondTestRound(Art.TreasureHunt)
         ]);
         Utils.shuffleArray(battery.tests);
         return battery;

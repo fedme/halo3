@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Video, Condition, TestBattery, TestRound, MemoryCheck, ExplanationBattery, MemoryCheckBattery } from './models';
+import { Video, Condition, TestBattery, TestRound, MemoryCheck, ExplanationBattery, MemoryCheckBattery, SecondTestBattery } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class HaloService implements IExperiment {
   testBattery: TestBattery;
   initialCheckBattery: MemoryCheckBattery;
   finalCheckBattery: MemoryCheckBattery;
+  secondTestBattery: SecondTestBattery;
   explanationBattery: ExplanationBattery;
   private explanationIndex: number;
   private videoIndex: number;
@@ -33,6 +34,7 @@ export class HaloService implements IExperiment {
     this.testBattery = null;
     this.initialCheckBattery = null;
     this.finalCheckBattery = null;
+    this.secondTestBattery = null;
     this.explanationBattery = null;
     this.videoIndex = 0;
     this.testIndex = 0;
@@ -85,6 +87,7 @@ export class HaloService implements IExperiment {
 
   setupTests() {
     this.testBattery = TestBattery.getDefault();
+    this.secondTestBattery = SecondTestBattery.getDefault();
   }
 
   setupExplanations() {
@@ -136,7 +139,8 @@ export class HaloService implements IExperiment {
       condition: this.condition,
       initialChecks: this.initialCheckBattery,
       test: this.testBattery,
-      finalChecks: this.finalCheckBattery
+      finalChecks: this.finalCheckBattery,
+      secondTest: this.secondTestBattery
     };
 
     return data;

@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'test', loadChildren: './test/test.module#TestPageModule' },
   { path: 'explanation', loadChildren: './explanation/explanation.module#ExplanationPageModule' },
   { path: 'final-check', loadChildren: './final-check/final-check.module#FinalCheckPageModule' },
+  { path: 'second-test', loadChildren: './second-test/second-test.module#SecondTestPageModule' },
   { path: 'end', loadChildren: './end/end.module#EndPageModule' }
 ];
 

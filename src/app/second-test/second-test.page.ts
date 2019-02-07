@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { HaloService } from '../services/halo/halo.service';
+import { DataService } from '../services/common/data.service';
 
 @Component({
-  selector: 'app-final-check',
-  templateUrl: './final-check.page.html',
-  styleUrls: ['./final-check.page.scss'],
+  selector: 'app-second-test',
+  templateUrl: './second-test.page.html',
+  styleUrls: ['./second-test.page.scss'],
 })
-export class FinalCheckPage implements OnInit {
+export class SecondTestPage implements OnInit {
 
   constructor(
+    private appData: DataService,
     public halo: HaloService,
     private navCtrl: NavController,
     private alertCtrl: AlertController
@@ -19,8 +21,9 @@ export class FinalCheckPage implements OnInit {
 
   ngOnInit() {
   }
+ 
 
-  async chooseByIndex(i: number) {
+  async chooseInstructor(i: number) {
 
     const alert = await this.alertCtrl.create({
       header: 'Confirm?',
@@ -34,12 +37,13 @@ export class FinalCheckPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.finalCheckBattery.currentCheck.chooseByIndex(i);
-            if (this.halo.finalCheckBattery.isLastCheck()) {
-              this.navCtrl.navigateRoot('/second-test');
+            this.halo.secondTestBattery.currentTest.chooseInstructor(i);
+            if (this.halo.secondTestBattery.isLastTest()) {
+              this.appData.save();
+              this.navCtrl.navigateRoot('/explanation');
             }
             else {
-              this.halo.finalCheckBattery.nextCheck();
+              this.halo.secondTestBattery.nextTest();
             }
           }
         }

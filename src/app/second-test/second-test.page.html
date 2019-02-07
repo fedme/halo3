@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Test 2</ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="next()">{{'UI.NEXT' | translate}}</ion-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid fixed size-md>
+
+    <ion-row justify-content-center align-items-start>
+
+      <ion-col size="4" size-m text-center>
+        <img src="assets/img/test2/{{halo.secondTestBattery.currentTest.picture}}.png" alt="{{halo.secondTestBattery.currentTest.picture}}">
+      </ion-col>
+
+    </ion-row>
+
+
+
+    <ion-row justify-content-center align-items-start>
+
+      <ion-col size="4" size-m text-center *ngFor="let choice of halo.secondTestBattery.currentTest.possibleChoices; let i = index">
+        <div class="instructor">
+          <img src="assets/img/{{choice}}.png" alt="{{choice}}" (click)="chooseInstructor(i)">
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>
