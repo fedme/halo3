@@ -14,9 +14,6 @@ export class HaloService implements IExperiment {
   finalCheckBattery: MemoryCheckBattery;
   secondTestBattery: SecondTestBattery;
   explanationBattery: ExplanationBattery;
-  private explanationIndex: number;
-  private videoIndex: number;
-  private testIndex: number;
 
   constructor() { }
 
@@ -36,48 +33,6 @@ export class HaloService implements IExperiment {
     this.finalCheckBattery = null;
     this.secondTestBattery = null;
     this.explanationBattery = null;
-    this.videoIndex = 0;
-    this.testIndex = 0;
-    this.explanationIndex = 0;
-  }
-
-  public get currentVideo(): Video {
-    if (this.videoIndex >= this.condition.videos.length) return null;
-    return this.condition.videos[this.videoIndex];
-  }
-
-  public isLastVideo(): boolean {
-    return this.videoIndex >= this.condition.videos.length - 1;
-  }
-
-  public nextVideo() {
-    this.videoIndex++;
-  }
-
-  public get currentTest(): TestRound {
-    if (this.testIndex >= this.testBattery.tests.length) return null;
-    return this.testBattery.tests[this.testIndex];
-  }
-
-  public isLastTest(): boolean {
-    return this.testIndex >= this.testBattery.tests.length - 1;
-  }
-
-  public nextTest() {
-    this.testIndex++;
-  }
-
-  public get currentExplanation(): string {
-    if (this.explanationIndex >= this.explanationBattery.explanations.length) return null;
-    return this.explanationBattery.explanations[this.explanationIndex];
-  }
-
-  public isLastExplanation(): boolean {
-    return this.explanationIndex >= this.explanationBattery.explanations.length - 1;
-  }
-
-  public nextExplanation() {
-    this.explanationIndex++;
   }
 
   setupChecks() {

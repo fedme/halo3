@@ -36,7 +36,7 @@ export class TestPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.currentTest.chooseInstructor(i);
+            this.halo.testBattery.currentTest.chooseInstructor(i);
           }
         }
       ]
@@ -59,7 +59,7 @@ export class TestPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.currentTest.chooseConfidence(i);
+            this.halo.testBattery.currentTest.chooseConfidence(i);
           }
         }
       ]
@@ -82,12 +82,12 @@ export class TestPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.currentTest.chooseConfidenceLevel(i);
-            if (this.halo.isLastTest()) {
+            this.halo.testBattery.currentTest.chooseConfidenceLevel(i);
+            if (this.halo.testBattery.isLastTest()) {
               this.navCtrl.navigateRoot('/final-check');
             }
             else {
-              this.halo.nextTest();
+              this.halo.testBattery.nextTest();
             }
           }
         }

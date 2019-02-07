@@ -34,11 +34,11 @@ export class VideosPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            if (this.halo.isLastVideo()) {
+            if (this.halo.condition.isLastVideo()) {
               this.navCtrl.navigateRoot('/initial-check');
             }
             else {
-              this.halo.nextVideo();
+              this.halo.condition.nextVideo();
             }
           }
         }

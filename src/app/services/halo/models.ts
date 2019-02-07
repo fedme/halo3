@@ -131,9 +131,24 @@ export class TestRound {
 
 export class TestBattery {
     tests: TestRound[];
+    private testIndex: number;
 
     constructor(tests: TestRound[]) {
         this.tests = tests;
+        this.testIndex = 0;
+    }
+
+    public get currentTest(): TestRound {
+        if (this.testIndex >= this.tests.length) return null;
+        return this.tests[this.testIndex];
+    }
+
+    public isLastTest(): boolean {
+        return this.testIndex >= this.tests.length - 1;
+    }
+
+    public nextTest() {
+        this.testIndex++;
     }
 
     public static getDefault(): TestBattery {
@@ -152,7 +167,7 @@ export class SecondTestRound {
     choice: Instructor;
 
     possibleChoices: Instructor[];
-    
+
 
     constructor(picture: Art) {
         this.picture = picture;
@@ -202,9 +217,24 @@ export class SecondTestBattery {
 
 export class ExplanationBattery {
     explanations: Environment[];
+    private explanationIndex: number;
 
     constructor(exps: Environment[]) {
         this.explanations = exps;
+        this.explanationIndex = 0;
+    }
+
+    public get currentExplanation(): string {
+        if (this.explanationIndex >= this.explanations.length) return null;
+        return this.explanations[this.explanationIndex];
+    }
+
+    public isLastExplanation(): boolean {
+        return this.explanationIndex >= this.explanations.length - 1;
+    }
+
+    public nextExplanation() {
+        this.explanationIndex++;
     }
 
     public static getDefault(): ExplanationBattery {
@@ -236,10 +266,25 @@ export class Video {
 export class Condition {
     id: string;
     videos: Video[] = [];
+    private videoIndex: number;
 
     constructor(id: string, videos: Video[] = []) {
         this.id = id;
         this.videos = videos;
+        this.videoIndex = 0;
+    }
+
+    public get currentVideo(): Video {
+        if (this.videoIndex >= this.videos.length) return null;
+        return this.videos[this.videoIndex];
+    }
+
+    public isLastVideo(): boolean {
+        return this.videoIndex >= this.videos.length - 1;
+    }
+
+    public nextVideo() {
+        this.videoIndex++;
     }
 
     static getAll(): Condition[] {

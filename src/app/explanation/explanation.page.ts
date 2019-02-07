@@ -35,11 +35,11 @@ export class ExplanationPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            if (this.halo.isLastExplanation()) {
+            if (this.halo.explanationBattery.isLastExplanation()) {
               this.navCtrl.navigateRoot('/end');
             }
             else {
-              this.halo.nextExplanation();
+              this.halo.explanationBattery.nextExplanation();
             }     
           }
         }
