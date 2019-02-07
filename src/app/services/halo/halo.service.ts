@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Instructor, Video, Condition, Skill, TestBattery, TestRound, MemoryCheck } from './models';
+import { Instructor, Video, Condition, Skill, TestBattery, TestRound, MemoryCheck, ExplanationBattery } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class HaloService implements IExperiment {
   testBattery: TestBattery;
   initialCheck: MemoryCheck;
   finalCheck: MemoryCheck;
-  explanations: string[];
+  explanationBattery: ExplanationBattery;
   private explanationIndex: number;
   private videoIndex: number;
   private testIndex: number;
@@ -32,10 +32,10 @@ export class HaloService implements IExperiment {
     this.testBattery = null;
     this.initialCheck = null;
     this.finalCheck = null;
-    this.explanations = ['animals', 'fish', 'houses'];
-    this.explanationIndex = 0;
+    this.explanationBattery = null;
     this.videoIndex = 0;
     this.testIndex = 0;
+    this.explanationIndex = 0;
   }
 
   public get currentVideo(): Video {
@@ -65,12 +65,12 @@ export class HaloService implements IExperiment {
   }
 
   public get currentExplanation(): string {
-    if (this.explanationIndex >= this.explanations.length) return null;
-    return this.explanations[this.explanationIndex];
+    if (this.explanationIndex >= this.explanationBattery.explanations.length) return null;
+    return this.explanationBattery.explanations[this.explanationIndex];
   }
 
   public isLastExplanation(): boolean {
-    return this.explanationIndex >= this.explanations.length - 1;
+    return this.explanationIndex >= this.explanationBattery.explanations.length - 1;
   }
 
   public nextExplanation() {
@@ -83,12 +83,11 @@ export class HaloService implements IExperiment {
   }
 
   setupTests() {
-    this.testBattery = new TestBattery([
-      new TestRound('animals'),
-      new TestRound('fish'),
-      new TestRound('houses'),
-    ]);
-    Utils.shuffleArray(this.testBattery.tests);
+    this.testBattery = TestBattery.getDefault();
+  }
+
+  setupExplanations() {
+    this.explanationBattery = ExplanationBattery.getDefault();
   }
 
   chooseCondition() {
@@ -111,7 +110,7 @@ export class HaloService implements IExperiment {
     ids = Utils.getShuffledCopy(ids);
 
     // Pick condition
-    const conds = Condition.GetAllConditions();
+    const conds = Condition.getAll();
     const id = ids.shift();
     this.condition = conds[id];
 

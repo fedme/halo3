@@ -21,6 +21,12 @@ export enum ConfidenceLevel {
     NotSure = 'notsure'
 }
 
+export enum Environment {
+    Animals = 'animals',
+    Fish = 'fish',
+    Houses = 'houses'
+}
+
 export class MemoryCheck {
     possibleChoices: Instructor[];
     choice: Instructor;
@@ -44,7 +50,7 @@ export class MemoryCheck {
 }
 
 export class TestRound {
-    picture: string;
+    picture: Environment;
     choice: Instructor;
     confidence: Confidence;
     confidenceLevel: ConfidenceLevel;
@@ -53,7 +59,7 @@ export class TestRound {
     confidenceChoices: Confidence[];
     confidenceLevelChoices: ConfidenceLevel[];
 
-    constructor(picture: string) {
+    constructor(picture: Environment) {
         this.picture = picture;
         this.possibleChoices = [Instructor.Blue, Instructor.Yellow];
         Utils.shuffleArray(this.possibleChoices);
@@ -86,6 +92,33 @@ export class TestBattery {
     constructor(tests: TestRound[]) {
         this.tests = tests;
     }
+
+    public static getDefault(): TestBattery {
+        const battery = new TestBattery([
+            new TestRound(Environment.Animals),
+            new TestRound(Environment.Fish),
+            new TestRound(Environment.Houses),
+        ]);
+        Utils.shuffleArray(battery.tests);
+        return battery;
+    }
+}
+
+export class ExplanationBattery {
+    explanations: Environment[];
+
+    constructor(exps: Environment[]) {
+        this.explanations = exps;
+    }
+
+    public static getDefault(): ExplanationBattery {
+        const battery = new ExplanationBattery([
+            Environment.Animals,
+            Environment.Fish,
+            Environment.Houses
+        ]);
+        return battery;
+    }
 }
 
 export class Video {
@@ -99,7 +132,7 @@ export class Video {
         this.skill = skill;
     }
 
-    get videoFile(): string { 
+    get videoFile(): string {
         return `assets/videos/Edit_Video${this.id}_${this.instructor}_${this.skill.toUpperCase()}EXPERT.mp4`;
     }
 }
@@ -113,7 +146,7 @@ export class Condition {
         this.videos = videos;
     }
 
-    static GetAllConditions(): Condition[] {
+    static getAll(): Condition[] {
         return [
             new Condition(
                 'blue-fish',
@@ -153,6 +186,6 @@ export class Condition {
             )
         ];
     };
-    
+
 }
 
