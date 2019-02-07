@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Initial check</ion-title>
+    <ion-title>Initial check number {{halo.initialCheckBattery.visualIndex}}</ion-title>
     <ion-buttons slot="end">
       <!-- <ion-button (click)="next()">{{'UI.NEXT' | translate}}</ion-button> -->
     </ion-buttons>
@@ -11,7 +11,7 @@
   <ion-grid fixed size-md>
     <ion-row justify-content-center align-items-start>
 
-      <ion-col size="5" size-m text-center *ngFor="let choice of halo.initialCheck.possibleChoices; let i = index">
+      <ion-col size="5" size-m text-center *ngFor="let choice of halo.initialCheckBattery.currentCheck.possibleChoices; let i = index">
         <img src="assets/img/{{choice}}.png" alt="{{choice}}" (click)="chooseByIndex(i)">
       </ion-col>
 

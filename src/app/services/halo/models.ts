@@ -39,13 +39,49 @@ export class MemoryCheck {
         Utils.shuffleArray(this.possibleChoices);
     }
 
-    registerChoice(instructor: Instructor) {
+    choose(instructor: Instructor) {
         this.choice = instructor;
     }
 
     chooseByIndex(i: number) {
         if (i < this.possibleChoices.length)
-            this.registerChoice(this.possibleChoices[i]);
+            this.choose(this.possibleChoices[i]);
+    }
+}
+
+export class MemoryCheckBattery {
+    checks: MemoryCheck[];
+    private checkIndex: number;
+
+    constructor(checks: MemoryCheck[]) {
+        this.checks = checks;
+        this.checkIndex = 0;
+    }
+
+    public get currentCheck(): MemoryCheck {
+        if (this.checkIndex >= this.checks.length) return null;
+        return this.checks[this.checkIndex];
+    }
+
+    public get visualIndex(): number {
+        return this.checkIndex + 1;
+    }
+
+    public isLastCheck(): boolean {
+        return this.checkIndex >= this.checks.length - 1;
+    }
+
+    public nextCheck() {
+        this.checkIndex++;
+    }
+
+    public static getDefault(): MemoryCheckBattery {
+        return new MemoryCheckBattery([
+            new MemoryCheck(),
+            new MemoryCheck(),
+            new MemoryCheck(),
+            new MemoryCheck(),
+        ]);
     }
 }
 

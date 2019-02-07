@@ -34,8 +34,13 @@ export class InitialCheckPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.initialCheck.chooseByIndex(i);
-            this.navCtrl.navigateRoot('/test');
+            this.halo.initialCheckBattery.currentCheck.chooseByIndex(i);
+            if (this.halo.initialCheckBattery.isLastCheck()) {
+              this.navCtrl.navigateRoot('/test');
+            }
+            else {
+              this.halo.initialCheckBattery.nextCheck();
+            }
           }
         }
       ]

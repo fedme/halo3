@@ -36,9 +36,14 @@ export class FinalCheckPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            this.halo.finalCheck.chooseByIndex(i);
-            this.appData.save();
-            this.navCtrl.navigateRoot('/explanation');
+            this.halo.finalCheckBattery.currentCheck.chooseByIndex(i);
+            if (this.halo.finalCheckBattery.isLastCheck()) {
+              this.appData.save();
+              this.navCtrl.navigateRoot('/explanation');
+            }
+            else {
+              this.halo.finalCheckBattery.nextCheck();
+            }
           }
         }
       ]

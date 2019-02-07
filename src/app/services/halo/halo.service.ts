@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Instructor, Video, Condition, Skill, TestBattery, TestRound, MemoryCheck, ExplanationBattery } from './models';
+import { Video, Condition, TestBattery, TestRound, MemoryCheck, ExplanationBattery, MemoryCheckBattery } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class HaloService implements IExperiment {
 
   condition: Condition;
   testBattery: TestBattery;
-  initialCheck: MemoryCheck;
-  finalCheck: MemoryCheck;
+  initialCheckBattery: MemoryCheckBattery;
+  finalCheckBattery: MemoryCheckBattery;
   explanationBattery: ExplanationBattery;
   private explanationIndex: number;
   private videoIndex: number;
@@ -25,13 +25,14 @@ export class HaloService implements IExperiment {
     this.chooseCondition();
     this.setupTests();
     this.setupChecks();
+    this.setupExplanations();
   }
 
   public resetData() {
     this.condition = null;
     this.testBattery = null;
-    this.initialCheck = null;
-    this.finalCheck = null;
+    this.initialCheckBattery = null;
+    this.finalCheckBattery = null;
     this.explanationBattery = null;
     this.videoIndex = 0;
     this.testIndex = 0;
@@ -78,8 +79,8 @@ export class HaloService implements IExperiment {
   }
 
   setupChecks() {
-    this.initialCheck = new MemoryCheck();
-    this.finalCheck = new MemoryCheck();
+    this.initialCheckBattery = MemoryCheckBattery.getDefault();
+    this.finalCheckBattery = MemoryCheckBattery.getDefault();
   }
 
   setupTests() {
@@ -133,9 +134,9 @@ export class HaloService implements IExperiment {
 
     const data = {
       condition: this.condition,
-      initialCheck: this.initialCheck,
+      initialChecks: this.initialCheckBattery,
       test: this.testBattery,
-      finalCheck: this.finalCheck
+      finalChecks: this.finalCheckBattery
     };
 
     return data;
