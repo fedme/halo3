@@ -1,5 +1,5 @@
 {
-  "name": "fez-questionnaire",
+  "name": "halo3",
   "version": "1.1.1",
   "author": "Federico Meini",
   "homepage": "https://isearchlab.org/",
@@ -91,7 +91,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-ionic": {
-        "APP_ID": "bbcebb3c",
+        "APP_ID": "76499d07",
         "CHANNEL_NAME": "Production",
         "UPDATE_METHOD": "auto",
         "WARN_DEBUG": "false",
