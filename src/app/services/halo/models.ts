@@ -31,7 +31,9 @@ export enum Art {
     Animals = 'animals',
     BetterAtSchool = 'betteratschool',
     Icecream = 'icecream',
-    TreasureHunt = 'treasurehunt'
+    TreasureHunt = 'treasurehunt',
+    Plane = 'plane',
+    Riddle = 'riddle'
 }
 
 export class MemoryCheck {
@@ -208,7 +210,9 @@ export class SecondTestBattery {
             new SecondTestRound(Art.Animals),
             new SecondTestRound(Art.BetterAtSchool),
             new SecondTestRound(Art.Icecream),
-            new SecondTestRound(Art.TreasureHunt)
+            new SecondTestRound(Art.TreasureHunt),
+            new SecondTestRound(Art.Plane),
+            new SecondTestRound(Art.Riddle)
         ]);
         Utils.shuffleArray(battery.tests);
         return battery;
