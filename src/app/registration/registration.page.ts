@@ -100,7 +100,7 @@ export class RegistrationPage implements OnInit {
 
   private async doRegistration(): Promise<void> {
     this.app.setupExperiment();
-    await this.navCtrl.navigateRoot('/videos');
+    await this.navCtrl.navigateRoot('/intro');
   }
 
 }
