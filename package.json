@@ -1,5 +1,5 @@
 {
-  "name": "fez-questionnaire",
+  "name": "halo3",
   "version": "1.1.2",
   "author": "Federico Meini",
   "homepage": "https://isearchlab.org/",
@@ -78,7 +78,7 @@
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
   },
-  "description": "SIPP App",
+  "description": "iSearch experiment",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
